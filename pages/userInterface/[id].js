@@ -24,7 +24,8 @@ function InterfaceUser() {
       <div className="row ">
           <div className="col-6 border-end">
             <span class="d-block p-2 bg-success text-white">RSA</span>
-
+              <Generate/>
+              <Gbpk/>
               <Cryptage/>
               <Decryptage/>
           </div>
