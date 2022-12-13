@@ -39,6 +39,14 @@ function Gbpk() {
                 <p style={{fontSize: "0.7rem"}}></p>
             </div>
         </div>
+        <div className="row">
+            <div className="col-12">
+
+
+                <input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg"/>
+
+            </div>
+        </div>
     </div>
 
   )
