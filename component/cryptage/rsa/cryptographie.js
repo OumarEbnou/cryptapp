@@ -4,6 +4,13 @@ import DecPrivatePage from './decptfile'
 import Decryptage from './decryptage'
 import PrivatePage from './fichier'
 
+
+const imageformat=['png','gif','jpg','jpeg','svg','bmp','ico','webp']
+const txtformat=['txt','html','css','js']
+const applicationformat=['json','pdf','doc','docx','xls','xlsx','ppt','pptx']
+const audioformat=['mp3','wav','aac','ogg' ,'flac','m4a','m4b']
+
+
 function Cryptographie({rsa}) {
     const [filee,setFileUrl]=useState([])
     const [type,setType]=useState(null)
@@ -13,7 +20,7 @@ function Cryptographie({rsa}) {
       console.log("houna ok ok "+type);
       fileName=fileName.substr(0,fileName.lastIndexOf('.'))
       console.log(fileName);
-      if (type=='txt') {
+      if (txtformat.includes(type)) {
         const fileReader = new FileReader();
         fileReader.onload = (event) => {
           setText(event.target.result);
@@ -31,15 +38,14 @@ function Cryptographie({rsa}) {
 
         </div>
         <div className="col-4">
-            {type=='jpeg' && <a href={filee[1]} download={filee[2]+"result"} > {filee[2]}<br/> <img src={filee[1]} style={{width: '400px'}} alt="" /></a>}
-            {type=='txt' && (<a href={filee[1]} download>{filee[2]+"result"}</a>)}<br/>
-            {type=='txt' && <pre>{text}</pre>}
-            {type=='m4a' && (
+            {type && <a href={filee[1]} download={filee[2]+"result"} > {filee[2]+"result"}<br/></a> }
+            {imageformat.includes(type) &&  <img src={filee[1]} style={{width: '400px'}} alt="" />}
+            {txtformat.includes(type) && <pre>{text}</pre>}
+            {audioformat.includes(type) && (
               <audio controls src={filee[1]}>
                 Your browser does not support the audio element.
               </audio>
             )}
-            {type=='m4a' && <a href={filee[1]} download={filee[2]+"result"}><br/>{filee[2]}</a>}
         </div>
         <div className="col-4">
         <DecPrivatePage rsa={rsa} showFile={showFile} />
