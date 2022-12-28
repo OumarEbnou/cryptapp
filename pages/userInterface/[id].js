@@ -1,18 +1,14 @@
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import React, { Fragment, useState } from 'react'
-import CryptageAes from '../../component/cryptage/des/cryptage'
-import DecryptageAES from '../../component/cryptage/des/decryptage'
-import GenerateAESKey from '../../component/cryptage/des/generate'
-import Cryptage from '../../component/cryptage/rsa/cryptage'
-import Decryptage from '../../component/cryptage/rsa/decryptage'
-import Gbpk from '../../component/cryptage/rsa/gbpk'
-import Generate from '../../component/cryptage/rsa/generate'
-import Messageri from '../../component/messagerie/messageri'
+import Crypdes from '../../component/cryptage/des/crypdes'
+import Cryptographie from '../../component/cryptage/rsa/cryptographie'
+import rsaInstance from '../../helper/rsa2/rsainst'
 
 function InterfaceUser() {
     const router =useRouter()
     const idf= router.query.id
+    const rsa = rsaInstance()
 
   return (
     <Fragment>
@@ -22,19 +18,10 @@ function InterfaceUser() {
     <div className='border border-primary' style={{width: '100%'}}>
 
       <div className="row ">
-          <div className="col-6 border-end">
+          <div className="col-12 border-end">
             <span class="d-block p-2 bg-success text-white">RSA</span>
-              <Generate/>
-              <Gbpk/>
-              <Cryptage/>
-              <Decryptage/>
-          </div>
-          <div className="col-6 border-end">
-            <span class="d-block p-2 bg-success text-white">DES</span>
-            <GenerateAESKey/>
-            <CryptageAes/>
-            <DecryptageAES/>
-            <Messageri user={idf}/>
+
+              <Cryptographie rsa={rsa}/>
           </div>
 
       </div>

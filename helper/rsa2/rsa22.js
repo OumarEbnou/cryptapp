@@ -1,6 +1,6 @@
 import bigInt from './big-integer.min.js'
 
-class RSA {
+class RSA2 {
     constructor(keys) {
 
         var longueurChaineEncode = 32, objectKeys = {}, bigInt0 = bigInt(0), bigInt1 = bigInt(1), bigInt2 = bigInt(2), bigInt3 = bigInt(3), bigInt5 = bigInt(5), bigInt7 = bigInt(7), bigInt10 = bigInt(10), bigInt100000 = bigInt(100000);
@@ -100,7 +100,7 @@ class RSA {
             var p = bigInt(firstPrimeNumber, 35), q = bigInt(secondPrimeNumber, 35);
 
             if (!temoinMiller(p, 10) || !temoinMiller(q, 10)) {
-                console.error('RSA.findKey : Unable to find public and private keys. The params are\'nt prime number.');
+                console.error('RSA2.findKey : Unable to find public and private keys. The params are\'nt prime number.');
                 return false;
             }
             var n = p.multiply(q), qn = p.subtract(bigInt1).multiply(q.subtract(bigInt1)), ed = findED(p, q, qn);
@@ -178,4 +178,4 @@ class RSA {
     }
 }
 
-export default RSA
+export default RSA2

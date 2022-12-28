@@ -10,6 +10,8 @@ function CryptageAes() {
         event.preventDefault()
         const key=t1.current.value
         const msg=txt.current.value
+
+
         const crypt = new AES.Crypto(key)
         setMsg(crypt.encrypt(msg))
     }

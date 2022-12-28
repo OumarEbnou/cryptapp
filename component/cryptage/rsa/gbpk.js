@@ -4,9 +4,12 @@ import RSA from '../../../helper/rsa2/rsa'
 function Gbpk() {
     const [cles,setCles]=useState([])
     const t1=useRef()
-
+    var f1=useRef()
+    let img=""
     var rsa = new RSA()
-
+    if(f1.current){
+    img=f1.current.value
+    console.log(img);}
     function generePrimaryKey(e) {
         e.preventDefault()
         const tv=t1.current.value
@@ -43,8 +46,8 @@ function Gbpk() {
             <div className="col-12">
 
 
-                <input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg"/>
-
+                <input type="file" ref={f1} id="avatar" name="avatar" accept="image/png, image/jpeg"/>
+                <img src="{img}"  alt="" />
             </div>
         </div>
     </div>
