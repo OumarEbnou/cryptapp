@@ -1,18 +1,13 @@
 import React, { useRef, useState } from 'react'
-import AES from '../../../helper/DES/aes';
 
-
-function DecryptageAES() {
+function Decryptage({algo}) {
     const [msg,setMsg]=useState()
-    const t1=useRef()
     const txt=useRef()
-
     function decrypter(event) {
         event.preventDefault()
-        const key=t1.current.value
+
         const msg=txt.current.value
-        const crypt = new AES.Crypto(key)
-        setMsg(crypt.decrypt(msg))
+        setMsg(algo.decrypt(msg))
     }
   return (
     <div className="container " >
@@ -21,15 +16,14 @@ function DecryptageAES() {
         <div className="row">
             <div className="col-12">
                 <form className="d-flex">
-                    <input ref={t1} className="form-control " type="text" placeholder="cle" />
-                    <input ref={txt} className="form-control " type="textarea" placeholder="Message" />
+                     <input ref={txt} className="form-control " type="textarea" placeholder="Message" />
                     <button onClick={decrypter} className="btn btn-outline-success" type="submit">Decrypter</button>
                 </form>
             </div>
         </div>
         <div className="row">
             <div className="col-12">
-                <span className="badge bg-secondary">Message Decrypté: </span><br/>
+                <span className="badge bg-secondary">Message crypté: </span><br/>
                 {msg? msg:''}
             </div>
         </div>
@@ -37,4 +31,4 @@ function DecryptageAES() {
   )
 }
 
-export default DecryptageAES
+export default Decryptage

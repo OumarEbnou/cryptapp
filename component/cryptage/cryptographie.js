@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import Cryptage from './cryptage'
-import DecPrivatePage from './decptfile'
-import Decryptage from './decryptage'
-import PrivatePage from './fichier'
+import Cryptage from './textcrypt'
+import DecPrivatePage from './filedecrypt'
+import Decryptage from './textdecrypt'
+import PrivatePage from './filecrypt'
 
 
 const imageformat=['png','gif','jpg','jpeg','svg','bmp','ico','webp','jfif']
@@ -11,7 +11,7 @@ const applicationformat=['json','pdf','doc','docx','xls','xlsx','ppt','pptx']
 const audioformat=['mp3','wav','aac','ogg' ,'flac','m4a','m4b']
 
 
-function Cryptographie({rsa}) {
+function Cryptographie({algo}) {
     const [filee,setFileUrl]=useState([])
     const [type,setType]=useState(null)
     const [text, setText] = useState('');
@@ -34,7 +34,7 @@ function Cryptographie({rsa}) {
     <div>
       <div className="row">
         <div className="col-4">
-        <PrivatePage rsa={rsa} showFile={showFile} />
+        <PrivatePage algo={algo} showFile={showFile} />
 
         </div>
         <div className="col-4">
@@ -48,7 +48,7 @@ function Cryptographie({rsa}) {
             )}
         </div>
         <div className="col-4">
-        <DecPrivatePage rsa={rsa} showFile={showFile} />
+        <DecPrivatePage algo={algo} showFile={showFile} />
 
         </div>
       </div>
@@ -56,8 +56,8 @@ function Cryptographie({rsa}) {
         <h1></h1>
       </div>
     <div className="row">
-      <Cryptage rsa={rsa} />
-        <Decryptage rsa={rsa} />
+      <Cryptage algo={algo} />
+        <Decryptage algo={algo} />
     </div>
 
     </div>

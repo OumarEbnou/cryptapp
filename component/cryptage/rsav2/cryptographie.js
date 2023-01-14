@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
-import Cryptage from './cryptage'
 import DecPrivatePage from './decptfile'
-import Decryptage from './decryptage'
 import PrivatePage from './fichier'
-
+import Cryptage from '../rsa/cryptage'
+import Decryptage from '../rsa/decryptage'
 
 const imageformat=['png','gif','jpg','jpeg','svg','bmp','ico','webp','jfif']
 const txtformat=['txt','html','css','js']

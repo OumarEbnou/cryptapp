@@ -8,7 +8,7 @@ export  default function decrytfile(buffer,rsa){
     const origin= enc.decode(buffer)
 
     console.log('====================================');
-    console.log('ok');
+    console.log(origin);
     console.log('====================================');
     txt2=origin.split(',')
 

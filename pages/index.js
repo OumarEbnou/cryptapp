@@ -1,5 +1,7 @@
 import Head from 'next/head'
-import User from '../component/user'
+import User from '../component/user';
+import Img1 from '../uploads/blowfish.png'
+import Img2 from '../uploads/pic_rsa.jpeg'
 
 export default function Home() {
   return (
@@ -13,7 +15,9 @@ export default function Home() {
       </Head>
 
           <div className="row">
-            <User userId={1} name='Oumar' img="https://bootdey.com/img/Content/avatar/avatar1.png"/>
+            <User  name='AES' img="https://media.cybernews.com/images/featured/2020/12/What-is-AES-Encryption.jpg"/>
+            <User  name='RSA' img="https://www.numerama.com//content/uploads/2010/01/rsacreators1.jpg"/>
+
           </div>
 
 

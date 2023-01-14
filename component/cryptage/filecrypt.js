@@ -1,12 +1,12 @@
 import { useState } from "react";
-import crytfile from "../../../helper/algo/crytfile";
+import crytfile from "../../helper/algo/crytfile";
 
 /**
  * # MY ACCOUNT GOOGLE PLAY:
  * @see {@link https://play.google.com/store/apps/developer?id=dzino Google Play}
  */
 
-export default function PrivatePage({rsa,showFile}) {
+export default function PrivatePage({algo,showFile}) {
   const [image, setImage] = useState(null);
 
   var enc1 = new TextEncoder();
@@ -118,7 +118,7 @@ export default function PrivatePage({rsa,showFile}) {
     const ii=await image.arrayBuffer()
     let fileExtension=exten(image)
     var arrayBuffer = new Uint8Array(ii);
-    const msg =crytfile(arrayBuffer,rsa)
+    const msg =crytfile(arrayBuffer,algo)
 
     const data=enc1.encode(msg)
     var blob = new Blob([data], {type: fileExtension[0]});

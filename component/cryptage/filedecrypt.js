@@ -1,16 +1,15 @@
 import { useState } from "react";
-import crytfile from "../../../helper/algo/crytfile";
+import decrytfile from "../../helper/algo/decryptfile";
 
 /**
  * # MY ACCOUNT GOOGLE PLAY:
  * @see {@link https://play.google.com/store/apps/developer?id=dzino Google Play}
  */
 
-export default function PrivatePage({rsa,showFile}) {
-  const [image, setImage] = useState(null);
+export default function DecPrivatePage({algo,showFile}) {
+  const [img, setImg] = useState(null);
 
-  var enc1 = new TextEncoder();
-  const uploadToClient = (event) => {
+  const uploadTo1Client = (event) => {
     if (event.target.files && event.target.files[0]) {
       const i = event.target.files[0];
       const fileName = i.name;
@@ -18,8 +17,7 @@ export default function PrivatePage({rsa,showFile}) {
       let fileExtension = (fileName.substr(fileName.lastIndexOf('.'))).substr(1);
 
       showFile(i,fileExtension,fileName)
-      setImage(i);
-
+      setImg(i);
     }
   };
   function exten(file){
@@ -36,8 +34,6 @@ export default function PrivatePage({rsa,showFile}) {
         fileType = 'image/gif';
         break;
       case 'jfif':
-        fileType = 'image/jpeg';
-        break;
       case 'jpg':
       case 'jpeg':
         fileType = 'image/jpeg';
@@ -113,29 +109,33 @@ export default function PrivatePage({rsa,showFile}) {
 
     return [fileType,fileExtension]
   }
-  const crypter = async (event) => {
+  const decrypter = async (event) => {
     event.preventDefault()
-    const ii=await image.arrayBuffer()
-    let fileExtension=exten(image)
+    const ii=await img.arrayBuffer()
+
+    let fileExtension=exten(img)
+    console.log(fileExtension[0]);
     var arrayBuffer = new Uint8Array(ii);
-    const msg =crytfile(arrayBuffer,rsa)
 
-    const data=enc1.encode(msg)
+    var txt =decrytfile(arrayBuffer,algo)
+
+    const data=new Uint8Array(txt)
+
     var blob = new Blob([data], {type: fileExtension[0]});
-    showFile( blob,fileExtension[1], image.name)
-    setImage(blob);
-  };
+    showFile(blob,fileExtension[1],img.name)
+    setImg(blob);
 
+  };
   return (
     <div>
       <div>
           <div className="row">
-            <input type="file" name="file-6" onChange={uploadToClient} id="file-6" hidden className="inputfile inputfile-5"   />
-					  <label for="file-6"><figure><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/></svg></figure> <span></span></label>
+            <input type="file" name="file-7" onChange={uploadTo1Client} id="file-7" hidden className="inputfile inputfile-5"   />
+			<label for="file-7"><figure><svg xmlns="http://www.w3.org/2000/svg" width="20" height="17" viewBox="0 0 20 17"><path d="M10 0l-5.2 4.9h3.3v5.1h3.8v-5.1h3.3l-5.2-4.9zm9.3 11.5l-3.2-2.1h-2l3.4 2.6h-3.5c-.1 0-.2.1-.2.1l-.8 2.3h-6l-.8-2.2c-.1-.1-.1-.2-.2-.2h-3.6l3.4-2.6h-2l-3.2 2.1c-.4.3-.7 1-.6 1.5l.6 3.1c.1.5.7.9 1.2.9h16.3c.6 0 1.1-.4 1.3-.9l.6-3.1c.1-.5-.2-1.2-.7-1.5z"/></svg></figure> <span></span></label>
 
           </div>
           <div className="row">
-              <button className="btn btn-danger" type="submit" onClick={crypter}>Crypter</button>
+            <button className="btn btn-primary" type="submit" onClick={decrypter}> Decrypter</button>
 
           </div>
 

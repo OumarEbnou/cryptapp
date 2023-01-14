@@ -1,14 +1,20 @@
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import React, { Fragment, useState } from 'react'
-import Crypdes from '../../component/cryptage/des/crypdes'
-import Cryptographie from '../../component/cryptage/rsa/cryptographie'
+import Cryptographie from '../../component/cryptage/cryptographie'
+import AESCipher from '../../helper/aes/aes'
 import rsaInstance from '../../helper/rsa2/rsainst'
 
 function InterfaceUser() {
     const router =useRouter()
     const idf= router.query.id
-    const rsa = rsaInstance()
+    var algo
+    if (idf=='RSA') {
+      algo = rsaInstance()
+    } else {
+       algo = new AESCipher();
+
+    }
 
   return (
     <Fragment>
@@ -19,9 +25,8 @@ function InterfaceUser() {
 
       <div className="row ">
           <div className="col-12 border-end">
-            <span class="d-block p-2 bg-success text-white">RSA</span>
-
-              <Cryptographie rsa={rsa}/>
+            <span class="d-block p-2 bg-success text-white">{idf}</span>
+              <Cryptographie algo={algo}/>
           </div>
 
       </div>

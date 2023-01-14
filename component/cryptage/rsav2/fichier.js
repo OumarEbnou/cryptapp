@@ -1,5 +1,6 @@
 import { useState } from "react";
-import crytfile from "../../../helper/algo/crytfile";
+import crytfile from "../../../helper/rsav2/crytfile";
+import decrytfile from "../../../helper/rsa2/decryptfile";
 
 /**
  * # MY ACCOUNT GOOGLE PLAY:
