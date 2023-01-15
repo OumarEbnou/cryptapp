@@ -38,7 +38,7 @@ function Cryptographie({algo}) {
 
         </div>
         <div className="col-4">
-            {type && <a href={filee[1]} download={filee[2]+"result"} > {filee[2]+"result"}<br/></a> }
+            {type && <a href={filee[1]} download={filee[2]+"result"} > <i>click for Download file : </i>{filee[2]+"result"}<br/></a> }
             {imageformat.includes(type) &&  <img src={filee[1]} style={{width: '400px'}} alt="" />}
             {txtformat.includes(type) && <pre>{text}</pre>}
             {audioformat.includes(type) && (
