@@ -1,7 +1,5 @@
 import Link from 'next/link'
 import React from 'react'
-import Img1 from '../uploads/blowfish.png'
-
 function User({name,img}) {
   return (
              <div className="col-lg-6">

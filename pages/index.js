@@ -1,7 +1,5 @@
 import Head from 'next/head'
 import User from '../component/user';
-import Img1 from '../uploads/blowfish.png'
-import Img2 from '../uploads/pic_rsa.jpeg'
 
 export default function Home() {
   return (
